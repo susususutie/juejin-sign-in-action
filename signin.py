@@ -47,7 +47,7 @@ if __name__ == "__main__":
     if dict["err_no"] == 0 and dict["data"]:
         data = dict["data"]
         checkin_result = "签到成功! 今日新增矿石 %s, 共有矿石 %d" % (
-            data["lottery_name"],
+            data["incr_point"],
             data["sum_point"],
         )
     else:
