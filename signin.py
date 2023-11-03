@@ -61,7 +61,7 @@ if __name__ == "__main__":
     else:
         lottery_result = "未抽中, %s" % dict["err_msg"]
 
-    resultMsg = "掘金签到结果\n" + checkin_result + "\n 掘金抽奖结果\n" + lottery_result
+    resultMsg = "掘金签到结果: " + checkin_result + "; 掘金抽奖结果: " + lottery_result + "."
     if server_key:
         send_server("掘金签到+每日抽奖 ", resultMsg)
     print("本次签到与抽奖结果信息:\n %s" % resultMsg)
