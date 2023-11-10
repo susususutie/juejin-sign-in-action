@@ -2,6 +2,7 @@ import os
 import requests
 import json
 import random
+import re
 
 # 添加 server 酱通知
 server_key = os.environ.get("SERVER_KEY")
@@ -20,9 +21,7 @@ user_agent_list = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/118.0",
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36",
 ]
-headers = {
-    "User-Agent": user_agent_list[random.randrange(0, len(user_agent_list))]
-}
+headers = {"User-Agent": user_agent_list[random.randrange(0, len(user_agent_list))]}
 
 
 # server 酱消息推送
@@ -46,22 +45,32 @@ if __name__ == "__main__":
     dict = json.loads(checkInResp.text)
     if dict["err_no"] == 0 and dict["data"]:
         data = dict["data"]
-        checkin_result = "签到成功! 今日新增矿石 %s, 共有矿石 %d" % (
-            data["incr_point"],
-            data["sum_point"],
-        )
+        inc = data["incr_point"]
+        sum = data["sum_point"]
+        checkin_result = "签到成功! 今日新增矿石 %s, 共有矿石 %d" % (inc, sum)
     else:
         checkin_result = "签到失败, %s" % dict["err_msg"]
 
     lottery_result = "未知"
     dict = json.loads(lotteryResp.text)
     if dict["err_no"] == 0 and dict["data"]:
-        data = dict["data"]
-        lottery_result = "抽中%s" % data["lottery_name"]
+        lottery_data = dict["data"]
+        if re.match(r'.(\d+)矿石', lottery_data["lottery_name"]):
+            lottery = re.match(r'.(\d+)矿石', lottery_data["lottery_name"]).group(1)
+            if sum:
+                sum = sum + int(lottery)
+        lottery_result = "抽中%s" % lottery_data["lottery_name"]
     else:
         lottery_result = "未抽中, %s" % dict["err_msg"]
 
-    resultMsg = "掘金签到结果: " + checkin_result + "; 掘金抽奖结果: " + lottery_result + "."
+    resultMsg = "掘金签到结果\n" + checkin_result + "\n 掘金抽奖结果\n" + lottery_result
+
     if server_key:
-        send_server("掘金签到+每日抽奖 ", resultMsg)
+        if sum:
+            if lottery:
+                send_server("掘金签到+%d抽奖+%d共%d矿石" % (inc, lottery, sum), resultMsg)
+            else:
+                send_server("掘金签到+%d抽奖+%s共%d矿石" % (inc, lottery_data["lottery_name"], sum), resultMsg)
+        else:
+            send_server("掘金签到+每日抽奖 ", resultMsg)
     print("本次签到与抽奖结果信息:\n %s" % resultMsg)
