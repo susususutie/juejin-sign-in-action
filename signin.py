@@ -43,6 +43,7 @@ if __name__ == "__main__":
 
     checkin_result = "未知"
     dict = json.loads(checkInResp.text)
+    print(dict)
     if dict["err_no"] == 0 and dict["data"]:
         data = dict["data"]
         inc = data["incr_point"]
@@ -53,6 +54,8 @@ if __name__ == "__main__":
 
     lottery_result = "未知"
     dict = json.loads(lotteryResp.text)
+    print(dict)
+    lottery = ""
     if dict["err_no"] == 0 and dict["data"]:
         lottery_data = dict["data"]
         if re.match(r'.(\d+)矿石', lottery_data["lottery_name"]):
@@ -68,9 +71,8 @@ if __name__ == "__main__":
     if server_key:
         if sum:
             if lottery:
-                send_server("掘金签到+%d抽奖+%d共%d矿石" % (inc, lottery, sum), resultMsg)
+                send_server("掘金签到+%d矿石抽奖+%d共%d矿石" % (inc, lottery, sum), resultMsg)
             else:
-                send_server("掘金签到+%d抽奖+%s共%d矿石" % (inc, lottery_data["lottery_name"], sum), resultMsg)
+                send_server("掘金签到+%d矿石抽奖+%d共%d矿石" % (inc, lottery_data["lottery_name"], sum), resultMsg)
         else:
             send_server("掘金签到+每日抽奖 ", resultMsg)
-    print("本次签到与抽奖结果信息:\n %s" % resultMsg)
