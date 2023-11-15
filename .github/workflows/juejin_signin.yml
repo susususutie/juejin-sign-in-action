@@ -2,7 +2,7 @@ name: juejin_signin
 
 on:
   schedule:
-    - cron: '50 23 * * *'
+    - cron: '15 23 * * *'
 
 jobs:
   juejin-autoSignIn:
