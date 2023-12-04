@@ -71,8 +71,8 @@ if __name__ == "__main__":
     if server_key:
         if sum:
             if lottery:
-                send_server("掘金签到+%d矿石抽奖+%d共%d矿石" % (inc, lottery, sum), resultMsg)
+                send_server("掘金签到+%d矿石抽奖+%d共%d矿石" % (inc, int(lottery), sum), resultMsg)
             else:
-                send_server("掘金签到+%d矿石抽奖+%d共%d矿石" % (inc, lottery_data["lottery_name"], sum), resultMsg)
+                send_server("掘金签到+%d矿石抽奖+%s共%d矿石" % (inc, lottery_data["lottery_name"], sum), resultMsg)
         else:
             send_server("掘金签到+每日抽奖 ", resultMsg)
