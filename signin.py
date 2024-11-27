@@ -42,8 +42,8 @@ if __name__ == "__main__":
     )
 
     checkin_result = "未知"
+    print(checkInResp)
     dict = json.loads(checkInResp.text)
-    print(dict)
     if dict["err_no"] == 0 and dict["data"]:
         data = dict["data"]
         inc = data["incr_point"]
