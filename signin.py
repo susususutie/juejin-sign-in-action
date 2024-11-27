@@ -39,7 +39,7 @@ if __name__ == "__main__":
         checkInUrl, headers=headers, cookies={"Cookie": jj_cookie}
     )
     if checkInResp.status_code == 200:
-        checkInResp = response.json()  # 假设响应内容是JSON格式
+        checkInResp = checkInResp.json()  # 假设响应内容是JSON格式
         print(checkInResp)
     else:
         print(f"请求失败，状态码：{checkInResp.status_code}")
@@ -48,7 +48,7 @@ if __name__ == "__main__":
         lotteryUrl, headers=headers, cookies={"Cookie": jj_cookie}
     )
     if lotteryResp.status_code == 200:
-        lotteryResp = response.json()  # 假设响应内容是JSON格式
+        lotteryResp = lotteryResp.json()  # 假设响应内容是JSON格式
         print(lotteryResp)
     else:
         print(f"请求失败，状态码：{lotteryResp.status_code}")
