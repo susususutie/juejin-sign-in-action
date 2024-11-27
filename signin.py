@@ -38,13 +38,20 @@ if __name__ == "__main__":
     checkInResp = requests.post(
         checkInUrl, headers=headers, cookies={"Cookie": jj_cookie}
     )
-    print(checkInResp.status_code)
-    print(checkInResp)
+    if checkInResp.status_code == 200:
+        checkInResp = response.json()  # 假设响应内容是JSON格式
+        print(checkInResp)
+    else:
+        print(f"请求失败，状态码：{checkInResp.status_code}")
+
     lotteryResp = requests.post(
         lotteryUrl, headers=headers, cookies={"Cookie": jj_cookie}
     )
-    print(lotteryResp.status_code)
-    print(lotteryResp)
+    if lotteryResp.status_code == 200:
+        lotteryResp = response.json()  # 假设响应内容是JSON格式
+        print(lotteryResp)
+    else:
+        print(f"请求失败，状态码：{lotteryResp.status_code}")
     
     # checkin_result = "未知"
     # dict = json.loads(checkInResp.text)
