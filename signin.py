@@ -12,8 +12,8 @@ jj_cookie = os.environ.get("JJ_COOKIE")
 
 # 掘金 api_url
 baseUrl = "https://api.juejin.cn/"
-checkInUrl = baseUrl + "growth_api/v1/check_in"
-lotteryUrl = baseUrl + "growth_api/v1/lottery/draw"
+checkInUrl = baseUrl + "https://api.juejin.cn/growth_api/v1/check_in?aid=2608&uuid=7250316748833687097&spider=0&msToken=cqaXT8gw-H0zMqF2tZqE_BuEbeKVhPqF1vCohAx6B3Fy7YYSjq0hrgAERexcXrj9OCJK7piZqTwSaSEo10texPe3AkCwAjy1AEMWsXIiVipGP4iwhZHYJkeXGm27R9yC&a_bogus=m6BxXcZrMsm1s7v68hDz9JDE1UY0YWRugZEPYfqMI0qB"
+lotteryUrl = baseUrl + "growth_api/v1/lottery/draw?aid=2608&uuid=7250316748833687097&spider=0&msToken=cqaXT8gw-H0zMqF2tZqE_BuEbeKVhPqF1vCohAx6B3Fy7YYSjq0hrgAERexcXrj9OCJK7piZqTwSaSEo10texPe3AkCwAjy1AEMWsXIiVipGP4iwhZHYJkeXGm27R9yC&a_bogus=m6BxXcZrMsm1s7v68hDz9JDE1UY0YWRugZEPYfqMI0qB"
 
 # user-agent
 user_agent_list = [
