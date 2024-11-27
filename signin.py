@@ -39,12 +39,12 @@ if __name__ == "__main__":
         checkInUrl, headers=headers, cookies={"Cookie": jj_cookie}
     )
     print(checkInResp.status_code)
-    print(checkInResp.text)
+    print(checkInResp)
     lotteryResp = requests.post(
         lotteryUrl, headers=headers, cookies={"Cookie": jj_cookie}
     )
     print(lotteryResp.status_code)
-    print(lotteryResp.text)
+    print(lotteryResp)
     
     # checkin_result = "未知"
     # dict = json.loads(checkInResp.text)
