@@ -37,12 +37,15 @@ if __name__ == "__main__":
     checkInResp = requests.post(
         checkInUrl, headers=headers, cookies={"Cookie": jj_cookie}
     )
+    print(checkInResp.status_code)
+    print(checkInResp.text)
     lotteryResp = requests.post(
         lotteryUrl, headers=headers, cookies={"Cookie": jj_cookie}
     )
-
+    print(lotteryResp.status_code)
+    print(lotteryResp.text)
+    
     checkin_result = "未知"
-    print(checkInResp)
     dict = json.loads(checkInResp.text)
     if dict["err_no"] == 0 and dict["data"]:
         data = dict["data"]
