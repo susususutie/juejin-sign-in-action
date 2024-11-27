@@ -34,6 +34,7 @@ def send_server(title, content):
 
 # 入口
 if __name__ == "__main__":
+    print("debugger")
     checkInResp = requests.post(
         checkInUrl, headers=headers, cookies={"Cookie": jj_cookie}
     )
