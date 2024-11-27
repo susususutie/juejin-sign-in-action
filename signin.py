@@ -12,7 +12,7 @@ jj_cookie = os.environ.get("JJ_COOKIE")
 
 # 掘金 api_url
 baseUrl = "https://api.juejin.cn/"
-checkInUrl = baseUrl + "https://api.juejin.cn/growth_api/v1/check_in?aid=2608&uuid=7250316748833687097&spider=0&msToken=cqaXT8gw-H0zMqF2tZqE_BuEbeKVhPqF1vCohAx6B3Fy7YYSjq0hrgAERexcXrj9OCJK7piZqTwSaSEo10texPe3AkCwAjy1AEMWsXIiVipGP4iwhZHYJkeXGm27R9yC&a_bogus=m6BxXcZrMsm1s7v68hDz9JDE1UY0YWRugZEPYfqMI0qB"
+checkInUrl = baseUrl + "growth_api/v1/check_in?aid=2608&uuid=7250316748833687097&spider=0&msToken=cqaXT8gw-H0zMqF2tZqE_BuEbeKVhPqF1vCohAx6B3Fy7YYSjq0hrgAERexcXrj9OCJK7piZqTwSaSEo10texPe3AkCwAjy1AEMWsXIiVipGP4iwhZHYJkeXGm27R9yC&a_bogus=m6BxXcZrMsm1s7v68hDz9JDE1UY0YWRugZEPYfqMI0qB"
 lotteryUrl = baseUrl + "growth_api/v1/lottery/draw?aid=2608&uuid=7250316748833687097&spider=0&msToken=cqaXT8gw-H0zMqF2tZqE_BuEbeKVhPqF1vCohAx6B3Fy7YYSjq0hrgAERexcXrj9OCJK7piZqTwSaSEo10texPe3AkCwAjy1AEMWsXIiVipGP4iwhZHYJkeXGm27R9yC&a_bogus=m6BxXcZrMsm1s7v68hDz9JDE1UY0YWRugZEPYfqMI0qB"
 
 # user-agent
@@ -42,7 +42,7 @@ if __name__ == "__main__":
         checkInResp = checkInResp.text  # 假设响应内容是JSON格式
         print(checkInResp)
     else:
-        print(f"请求失败，状态码：{checkInResp.status_code}")
+        print(f"签到请求失败，状态码：{checkInResp.status_code}")
 
     lotteryResp = requests.post(
         lotteryUrl, headers=headers, cookies={"Cookie": jj_cookie}
@@ -51,7 +51,7 @@ if __name__ == "__main__":
         lotteryResp = lotteryResp.text  # 假设响应内容是JSON格式
         print(lotteryResp)
     else:
-        print(f"请求失败，状态码：{lotteryResp.status_code}")
+        print(f"抽奖请求失败，状态码：{lotteryResp.status_code}")
     
     # checkin_result = "未知"
     # dict = json.loads(checkInResp.text)
